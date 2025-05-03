@@ -1,5 +1,5 @@
 import test from "@playwright/test";
 
-test("Filtration articles by tags", async () => {
+test("Фильтрация статей по тегу", async () => {
 
 });
