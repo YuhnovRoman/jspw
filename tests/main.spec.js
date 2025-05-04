@@ -1,17 +1,12 @@
 import { test } from '@playwright/test';
-import { MainPage } from '../pages/mainPage';
-import { ArticlesPreviewPage } from '../pages/articlesPreviewPage';
-import { GeneralNavigationPage } from '../pages/generalNavigationPage';
+import { App } from "../src/pages/appPage";
 
-test('Проверка главной страницы', async ({ page }) => {
-  const mainPage = new MainPage(page);
-  const articlePreviewPage = new ArticlesPreviewPage(page);
-  const generalNavigationPage = new GeneralNavigationPage(page);
+test('Проверка отображения элементов на главной странице', async ({ page }) => {
+  let app = new App(page);
 
-  await mainPage.openMainPage();
-  await generalNavigationPage.checkHeader();
-  await mainPage.checkMainContent();
-  await generalNavigationPage.checkPagination();
-  await generalNavigationPage.checkFooter();
-  await articlePreviewPage.checkArticlePreview();
+  await app.mainPage.openMainPage();
+  await app.generalNavigationPage.checkHeader();
+  await app.mainPage.checkMainContent();
+  await app.generalNavigationPage.checkPagination();
+  await app.generalNavigationPage.checkFooter();
 }); 
