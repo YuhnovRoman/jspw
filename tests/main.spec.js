@@ -10,3 +10,10 @@ test("Проверка отображения элементов на главн
   await app.generalNavigationPage.checkPagination();
   await app.generalNavigationPage.checkFooter();
 }); 
+
+test("Фильтрация статей по тегу", async ({ page }) => {
+  let app = new App(page);
+
+  await app.mainPage.openMainPage();
+  await app.mainPage.checkFiltrationArticles();
+});
