@@ -9,7 +9,7 @@ export class ArticlesPreviewPage {
         this.articlePreviewText = this.articleWrapper.locator("p");
         this.articlePreviewLike = this.articleWrapper.locator("span[class='counter']");
         this.articlePreviewTags = this.articleWrapper.locator("ul[class='tag-list']");     
-    }
+    };
 
     // Проверка, что у каждой статьи есть блок с автором и датой, заголовок, текст, лайки, теги.
     async checkArticlePreview() {

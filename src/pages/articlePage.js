@@ -7,7 +7,8 @@ export class ArticlePage {
         this.articleBanner = page.locator("div[class='banner']");
         this.articleAuthorBannerImg = this.articleBanner.locator("img");
         this.articleBannerInfo = this.articleBanner.locator("div[class='info']");
-        this.articleAuthorBannerFollowButton = this.articleBanner.locator("button").filter({ hasText: "Followers" });
+        this.articleAuthorBannerFollowButton = this.articleBanner.locator("button").filter({ hasText: / Follow / });
+        this.articleAuthorBannerUnfollowButton = this.articleBanner.locator("button").filter({ hasText: / Unfollow / });
         this.articleAuthorBannerFavoriteButton = this.articleBanner.locator("button").filter({ hasText: "Favorite" });
         this.articleContent = page.locator("div[class='col-md-12']");
         this.articleContentText = page.locator("div[class='col-md-12']").locator("p").first();
@@ -15,7 +16,8 @@ export class ArticlePage {
         this.articleActions = page.locator("div[class='article-actions']");
         this.articleActionsImg = this.articleActions.locator("img");
         this.articleActionsInfo = this.articleActions.locator("div[class='info']");
-        this.articleActionsFollowButton = this.articleActions.locator("button").filter({ hasText: "Followers" });
+        this.articleActionsFollowButton = this.articleActions.locator("button").filter({ hasText: / Follow / });
+        this.articleActionsUnfollowButton = this.articleActions.locator("button").filter({ hasText: / Unfollow / });
         this.articleActionsInfoFavoriteButton = this.articleActions.locator("button").filter({ hasText: "Favorite" });
         this.articleCommentBlock = page.locator("div[class='row']");
     }
@@ -52,9 +54,25 @@ export class ArticlePage {
         await expect(this.articleActionsInfo).toBeVisible();
         await expect(this.articleActionsFollowButton).toBeVisible();
         await expect(this.articleActionsInfoFavoriteButton).toBeVisible();
-    }
+    };
 
     async checkArticleEmptyCommentBlock() {
-        await expect(this.articleCommentBlock).toContainText("There are no comments yet...")
-    }
+        await expect(this.articleCommentBlock).toContainText("There are no comments yet...");
+    };
+
+    async checkFollowAuthorOnArticle() {
+        await this.articleAuthorBannerFollowButton.click();
+        await expect(this.articleAuthorBannerUnfollowButton).toBeVisible();
+        await this.articleActionsUnfollowButton.click();
+        await expect(this.articleActionsFollowButton).toBeVisible();
+    };
+
+    async checkFavoriteArticle() {
+        let favoriteButtonText = await this.articleAuthorBannerFavoriteButton.innerText();
+
+        await this.articleAuthorBannerFavoriteButton.click();
+        await expect(this.articleAuthorBannerFavoriteButton).not.toHaveText(favoriteButtonText);
+        await this.articleActionsInfoFavoriteButton.click();
+        await expect(this.articleActionsInfoFavoriteButton).toHaveText(favoriteButtonText);
+    };
 };

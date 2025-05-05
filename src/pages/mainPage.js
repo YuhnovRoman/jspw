@@ -26,6 +26,6 @@ export class MainPage{
             const tagButtonText = await tagButton.innerText();
             await tagButton.click();
             await expect(this.mainSelectedFilterTab).toContainText(tagButtonText);
-        }
+        };
     };
 };

@@ -9,7 +9,7 @@ export class AuthorPage {
         this.authorArticle = page.locator("li[class='nav-item']").filter({hasText: "My Articles"});
         this.authorFavoriteArticle = page.locator("li[class='nav-item']").filter({hasText: "Favorited Articles"});
         this.authorEmptyState = page.getByRole("main");
-    }
+    };
 
     async openAuthorPage () {
         await this.page.goto("https://realworld.qa.guru/#/profile/Keaton");
@@ -26,5 +26,5 @@ export class AuthorPage {
         await expect(this.authorFavoriteArticle).toBeVisible();
         await this.authorFavoriteArticle.click();
         await expect(this.authorEmptyState).toContainText("Keaton doesn\'t have favorites.");
-    }
+    };
 }

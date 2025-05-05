@@ -1,4 +1,4 @@
-import { MainPage, ArticlesPreviewPage, GeneralNavigationPage, AuthorPage, ArticlePage } from "./index";
+import { MainPage, ArticlesPreviewPage, GeneralNavigationPage, AuthorPage, ArticlePage, AuthPage } from "./index";
 
 export class App {
     constructor(page) {
@@ -8,5 +8,6 @@ export class App {
         this.generalNavigationPage = new GeneralNavigationPage(page);
         this.authorPage = new AuthorPage(page);
         this.articlePage = new ArticlePage(page);
-    }
-}
+        this.authPage = new AuthPage(page);
+    };
+};
