@@ -1,4 +1,3 @@
-import { expect } from "@playwright/test";
 import { REALWORLD_USER_CREDENTIALS } from "../helper/credentialsUser";
 
 export class AuthPage {
@@ -21,4 +20,4 @@ export class AuthPage {
         await this.authModalLoginButton.click();
         await expect(this.userImg).toBeVisible();
     };
-}
+};

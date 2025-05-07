@@ -1,5 +1,3 @@
-import { expect } from "@playwright/test";
-
 export class AuthorPage {
     constructor(page) {
         this.page = page;
@@ -14,17 +12,8 @@ export class AuthorPage {
     async openAuthorPage () {
         await this.page.goto("https://realworld.qa.guru/#/profile/Keaton");
     };
-
-    async checkUserInfo() {
-        await expect(this.authorImg).toBeVisible();
-        await expect(this.authorName).toBeVisible();
-        await expect(this.authorFollowersButton).toBeVisible();
-    }; 
-
-    async checkAuthorTabPanel() {
-        await expect(this.authorArticle).toBeVisible();
-        await expect(this.authorFavoriteArticle).toBeVisible();
+    
+    async favoriteArticleClick() {
         await this.authorFavoriteArticle.click();
-        await expect(this.authorEmptyState).toContainText("Keaton doesn\'t have favorites.");
     };
-}
+};

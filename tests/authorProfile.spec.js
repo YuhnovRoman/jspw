@@ -1,14 +1,30 @@
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { App } from "../src/pages/appPage";
 
 test("Проверка отображения элементов на странице автора", async ({ page }) => {
     let app = new App(page);
 
     await app.authorPage.openAuthorPage();
-    await app.generalNavigationPage.checkHeader();
-    await app.generalNavigationPage.checkFooter();
-    await app.generalNavigationPage.checkPagination();
-    await app.authorPage.checkUserInfo();
-    await app.articlePreviewPage.checkArticlePreview();
-    await app.authorPage.checkAuthorTabPanel();
+    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.footerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.footerSourceCode).toBeVisible();
+    await expect(app.generalNavigationPage.paginationWrapper).toBeVisible();
+    await expect(app.authorPage.authorImg).toBeVisible();
+    await expect(app.authorPage.authorName).toBeVisible();
+    await expect(app.authorPage.authorFollowersButton).toBeVisible();
+    await expect(app.articlePreviewPage.articleWrapper).toHaveCount(3);
+    // Проверка, что у каждой статьи есть блок с автором и датой, заголовок, текст, лайки, теги.
+    for (let i = 0; i < 3; i++) {
+        await expect(app.articlePreviewPage.articlePreviewInfo.nth(i)).toBeVisible();
+        await expect(app.articlePreviewPage.articlePreviewTitle.nth(i)).toBeVisible();
+        await expect(app.articlePreviewPage.articlePreviewText.nth(i)).toBeVisible();
+        await expect(app.articlePreviewPage.articlePreviewLike.nth(i)).toBeVisible();
+        await expect(app.articlePreviewPage.articlePreviewTags.nth(i)).toBeVisible();
+    };
+    await expect(app.authorPage.authorArticle).toBeVisible();
+    await expect(app.authorPage.authorFavoriteArticle).toBeVisible();
+    await app.authorPage.favoriteArticleClick();
+    await expect(app.authorPage.authorEmptyState).toContainText("Keaton doesn\'t have favorites.");
 });
