@@ -1,3 +1,5 @@
+import { test } from '@playwright/test';
+
 export class ArticlePage {
     constructor(page) {
         this.page = page;
@@ -21,36 +23,53 @@ export class ArticlePage {
     };
 
     async openArticlePage(comment = "with comments" | "no comments") {
-        switch (comment) {
-            case "with comments":
-                await this.page.goto("https://realworld.qa.guru/#/article/akva-explicabo-terra-");
-                break;
-            default:
-                await this.page.goto("https://realworld.qa.guru/#/article/akva-vinitor-sperno-");
-                break;
-        };
+        return test.step("Открытие страницы статьи", async () => {
+            switch (comment) {
+                case "with comments":
+                    await this.page.goto("https://realworld.qa.guru/#/article/akva-explicabo-terra-");
+                    break;
+                default:
+                    await this.page.goto("https://realworld.qa.guru/#/article/akva-vinitor-sperno-");
+                    break;
+            };
+        });
     };
 
     async getArticleTextLength() {
-        const articleText = await this.articleContentText.innerText();
-        const articleTextLength = articleText.length;
-        return articleTextLength;
+        return test.step("Сохранение текста из статьи", async () => {
+            const articleText = await this.articleContentText.innerText();
+            const articleTextLength = articleText.length;
+            return articleTextLength;
+        });
+
     };
 
     async followAuthorClick() {
-        await this.articleAuthorBannerFollowButton.click();
+        return test.step("Клик кнопки подписки на автора статьи", async () => {
+            await this.articleAuthorBannerFollowButton.click();
+        });
     };
 
     async unFollowAuthorClick() {
-        await this.articleActionsUnfollowButton.click();
+        return test.step("Клики кнопки отписки от автора статьи", async () => {
+            await this.articleActionsUnfollowButton.click();
+
+        });
+
     };
 
     async getFavoriteButtonText() {
-        let favoriteButtonText = await this.articleAuthorBannerFavoriteButton.innerText();
-        return favoriteButtonText;
+        return test.step("Сохранение текста кнопки добавления статьи в избранное", async () => {
+            let favoriteButtonText = await this.articleAuthorBannerFavoriteButton.innerText();
+            return favoriteButtonText;
+        });
+
+
     };
 
     async favoriteButtonClick() {
-        await this.articleAuthorBannerFavoriteButton.click();
+        return test.step("Клик кнопки добавление статьи в избранное", async () => {
+            await this.articleAuthorBannerFavoriteButton.click();
+        });
     };
 };

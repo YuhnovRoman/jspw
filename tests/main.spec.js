@@ -1,4 +1,4 @@
-import { test,expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { App } from "../src/pages/appPage";
 
 test("Проверка отображения элементов на главной странице", async ({ page }) => {
@@ -6,8 +6,8 @@ test("Проверка отображения элементов на главн
 
   await app.mainPage.openMainPage();
   await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-  await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-  await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+  await expect(app.generalNavigationPage.headerSourceCode).toBeVisible();
+  await expect(app.generalNavigationPage.homeLink).toBeVisible();
   await expect(app.mainPage.mainBanner).toBeVisible();
   await expect(app.mainPage.mainPopularTags).toHaveCount(50);
   await expect(app.generalNavigationPage.paginationWrapper).toBeVisible();

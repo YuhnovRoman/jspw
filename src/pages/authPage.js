@@ -14,10 +14,7 @@ export class AuthPage {
     async authorization() {
         await this.loginLink.click();
         await this.emailInput.fill(REALWORLD_USER_CREDENTIALS.email);
-        await expect(this.emailInput).toHaveAttribute("value", REALWORLD_USER_CREDENTIALS.email);
         await this.passwordInput.fill(REALWORLD_USER_CREDENTIALS.password);
-        await expect(this.passwordInput).toHaveAttribute("value", REALWORLD_USER_CREDENTIALS.password);
         await this.authModalLoginButton.click();
-        await expect(this.userImg).toBeVisible();
     };
 };

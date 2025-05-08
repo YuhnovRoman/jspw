@@ -5,7 +5,8 @@
   "scripts": {
     "test": "npx playwright test",
     "testUI": "npx playwright test --ui",
-    "codegen": "npx playwright codegen"
+    "codegen": "npx playwright codegen",
+    "allure3": "npx allure awesome ./allure-results --single-file"
   },
   "keywords": [],
   "author": "",

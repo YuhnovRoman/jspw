@@ -6,8 +6,8 @@ test("Проверка отображения элементов на стран
 
     await app.authorPage.openAuthorPage();
     await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.headerSourceCode).toBeVisible();
+    await expect(app.generalNavigationPage.homeLink).toBeVisible();
     await expect(app.generalNavigationPage.footerLogo).toBeVisible();
     await expect(app.generalNavigationPage.footerSourceCode).toBeVisible();
     await expect(app.generalNavigationPage.paginationWrapper).toBeVisible();

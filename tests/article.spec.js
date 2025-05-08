@@ -6,8 +6,8 @@ test("Проверка отображения элементов на стран
 
     await app.articlePage.openArticlePage("no comments");
     await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
-    await expect(app.generalNavigationPage.headerLogo).toBeVisible();
+    await expect(app.generalNavigationPage.headerSourceCode).toBeVisible();
+    await expect(app.generalNavigationPage.homeLink).toBeVisible();
     await expect(app.generalNavigationPage.footerLogo).toBeVisible();
     await expect(app.generalNavigationPage.footerSourceCode).toBeVisible();
     await expect(app.articlePage.articleAuthorBannerImg).toBeVisible();
@@ -30,6 +30,7 @@ test("Проверка подписки на автора на странице 
 
     await app.mainPage.openMainPage();
     await app.authPage.authorization();
+    await expect(app.authPage.userImg).toBeVisible();
     await app.articlePage.openArticlePage();
     // Проверка, что статья не пустая и там есть текст
     await expect(async () => {
@@ -46,6 +47,7 @@ test("Проверка добавление статьи в избранное �
 
     await app.mainPage.openMainPage();
     await app.authPage.authorization();
+    await expect(app.authPage.userImg).toBeVisible();
     await app.articlePage.openArticlePage();
     // Проверка, что статья не пустая и там есть текст
     await expect(async () => {
