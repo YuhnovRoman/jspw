@@ -12,8 +12,6 @@ test("Проверка создания статьи", async ({ page }) => {
         .generateArticleTag()
         .generate();
 
-    console.log(randomArticle);
-
     await app.mainPage.openMainPage();
     await app.authPage.authorization();
     await app.articlePage.createNewArticle(randomArticle);
