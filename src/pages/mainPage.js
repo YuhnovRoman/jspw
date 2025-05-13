@@ -1,3 +1,5 @@
+import { test } from '@playwright/test';
+
 export class MainPage {
     constructor(page) {
         this.page = page;
@@ -8,15 +10,21 @@ export class MainPage {
     };
 
     async openMainPage() {
-        await this.page.goto("https://realworld.qa.guru/");
+        return test.step("Открытие главной страницы", async () => {
+            await this.page.goto("https://realworld.qa.guru/");
+        });
     };
 
     async tagButtonClick() {
-        await this.mainPopularTags.first().click();
+        return test.step("Клик на первый тег", async () => {
+            await this.mainPopularTags.first().click();
+        });
     };
 
     async getTagButtonText() {
-        const tagButtonText = await this.mainPopularTags.first().innerText();
-        return tagButtonText;
+        return test.step("Сохранение текста кнопки тега", async () => {
+            const tagButtonText = await this.mainPopularTags.first().innerText();
+            return tagButtonText;
+        });
     };
 };

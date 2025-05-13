@@ -29,4 +29,4 @@ export class ArticleBuilder {
             tag: this.articleTag,    
         }
     };
-}
+};

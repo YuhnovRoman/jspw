@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { ArticleBuilder } from '../helper/articleBuilder';
 
 export class ArticlePage {
     constructor(page) {
@@ -51,9 +50,7 @@ export class ArticlePage {
     async unFollowAuthorClick() {
         return test.step("Клики кнопки отписки от автора статьи", async () => {
             await this.articleActionsUnfollowButton.click();
-
         });
-
     };
 
     async getFavoriteButtonText() {
@@ -61,8 +58,6 @@ export class ArticlePage {
             let favoriteButtonText = await this.articleAuthorBannerFavoriteButton.innerText();
             return favoriteButtonText;
         });
-
-
     };
 
     async favoriteButtonClick() {
@@ -72,12 +67,14 @@ export class ArticlePage {
     };
 
     async createNewArticle(randomArticle) {
-        const {title, aboutInfo, content, tag } = randomArticle;
-        await this.newArticleLink.click();
-        await this.articleTitleInput.fill(title);
-        await this.articleAboutInfoInput.fill(aboutInfo);
-        await this.articleTextInput.fill(content);
-        await this.articleTagInput.fill(tag);
-        await this.articlePublishButton.click();
-    }
+        return test.step("Создание случайной статьи", async () => {
+            const { title, aboutInfo, content, tag } = randomArticle;
+            await this.newArticleLink.click();
+            await this.articleTitleInput.fill(title);
+            await this.articleAboutInfoInput.fill(aboutInfo);
+            await this.articleTextInput.fill(content);
+            await this.articleTagInput.fill(tag);
+            await this.articlePublishButton.click();
+        });
+    };
 };

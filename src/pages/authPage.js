@@ -1,3 +1,4 @@
+import { test } from '@playwright/test';
 import { REALWORLD_USER_CREDENTIALS } from "../helper/credentialsUser";
 
 export class AuthPage {
@@ -12,9 +13,11 @@ export class AuthPage {
     };
 
     async authorization() {
-        await this.loginLink.click();
-        await this.emailInput.fill(REALWORLD_USER_CREDENTIALS.email);
-        await this.passwordInput.fill(REALWORLD_USER_CREDENTIALS.password);
-        await this.authModalLoginButton.click();
+        return test.step("Авторизация пользователя", async () => {
+            await this.loginLink.click();
+            await this.emailInput.fill(REALWORLD_USER_CREDENTIALS.email);
+            await this.passwordInput.fill(REALWORLD_USER_CREDENTIALS.password);
+            await this.authModalLoginButton.click();
+        });
     };
 };
