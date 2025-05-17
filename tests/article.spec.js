@@ -1,9 +1,7 @@
-import { test, expect } from '@playwright/test';
-import { App } from "../src/pages/appPage";
+import { expect } from '@playwright/test';
+import { test } from "../src/helper/fixtures/index";
 
-test("Проверка отображения элементов на странице статьи", async ({ page }) => {
-    let app = new App(page);
-
+test("Проверка отображения элементов на странице статьи", async ({ app }) => {
     await app.articlePage.openArticlePage("no comments");
     await expect(app.generalNavigationPage.headerLogo).toBeVisible();
     await expect(app.generalNavigationPage.headerSourceCode).toBeVisible();
@@ -22,9 +20,7 @@ test("Проверка отображения элементов на стран
     await expect(app.articlePage.articleCommentBlock).toContainText("There are no comments yet...");
 });
 
-test("Проверка подписки на автора на странице статьи", async ({ page }) => {
-    let app = new App(page);
-
+test("Проверка подписки на автора на странице статьи", async ({ app }) => {
     await app.mainPage.openMainPage();
     await app.authPage.authorization();
     await expect(app.authPage.userImg).toBeVisible();
@@ -32,13 +28,11 @@ test("Проверка подписки на автора на странице 
     await expect(app.articlePage.articleContent).not.toBeEmpty();
     await app.articlePage.followAuthorClick();
     await expect(app.articlePage.articleAuthorBannerUnfollowButton).toBeVisible();
-    await app.articlePage.unFollowAuthorClick()
+    await app.articlePage.unFollowAuthorClick();
     await expect(app.articlePage.articleActionsFollowButton).toBeVisible();
 });
 
-test("Проверка добавление статьи в избранное на странице статьи", async ({ page }) => {
-    let app = new App(page);
-
+test("Проверка добавление статьи в избранное на странице статьи", async ({ app }) => {
     await app.mainPage.openMainPage();
     await app.authPage.authorization();
     await expect(app.authPage.userImg).toBeVisible();
@@ -47,7 +41,7 @@ test("Проверка добавление статьи в избранное �
     await app.articlePage.favoriteButtonClick();
     await expect(app.articlePage.articleAuthorBannerFavoriteButton).not.toHaveText(await app.articlePage.getFavoriteButtonText());
     await app.articlePage.favoriteButtonClick();
-    await expect(app.articlePage.articleActionsInfoFavoriteButton).toHaveText(await app.articlePage.getFavoriteButtonText());;
+    await expect(app.articlePage.articleActionsInfoFavoriteButton).toHaveText(await app.articlePage.getFavoriteButtonText());
 });
 
 

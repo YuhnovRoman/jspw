@@ -1,9 +1,7 @@
-import { test, expect } from "@playwright/test";
-import { App } from "../src/pages/appPage";
+import { expect } from "@playwright/test";
+import { test } from "../src/helper/fixtures/index";
 
-test("Проверка отображения элементов на странице автора", async ({ page }) => {
-    let app = new App(page);
-
+test("Проверка отображения элементов на странице автора", async ({ app }) => {
     await app.authorPage.openAuthorPage();
     await expect(app.generalNavigationPage.headerLogo).toBeVisible();
     await expect(app.generalNavigationPage.headerSourceCode).toBeVisible();

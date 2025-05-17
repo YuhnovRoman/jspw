@@ -1,10 +1,8 @@
-import { test, expect } from '@playwright/test';
-import { App } from "../src/pages/appPage";
+import { expect } from '@playwright/test';
+import { test } from "../src/helper/fixtures/index";
 import { ArticleBuilder } from '../src/helper/articleBuilder';
 
-test("Проверка создания статьи", async ({ page }) => {
-    let app = new App(page);
-
+test("Проверка создания статьи", async ({ app }) => {
     const randomArticle = new ArticleBuilder()
         .generateArticleTitle()
         .generateArticleInfo()
