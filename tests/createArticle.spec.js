@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
-import { test } from "../src/helper/fixtures/index";
 import { ArticleBuilder } from '../src/helper/articleBuilder';
+import { test } from "../src/helper/fixtures/index";
 
 test("Проверка создания статьи", async ({ app }) => {
     const randomArticle = new ArticleBuilder()
